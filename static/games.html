@@ -122,6 +122,10 @@
           "embedUrl": "https://bloxd.io/",
           "iconUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Bloxd.io_Logo.jpeg/1200px-Bloxd.io_Logo.jpeg"
         },
+        "BlueBubbles": {
+          "embedUrl": "https://bluebubbles.app/web/",
+          "iconUrl": "https://play-lh.googleusercontent.com/th-IZKUH5DEVB5qlc7GxOBhZnAsAIf6nBSK6KexwYNVnctdojbfe7yS1_5daiD_2DmY"
+        },
         "Google Snake Mods": {
           "embedUrl": "https://googlesnakemods.com/v/current",
           "iconUrl": "https://user-images.githubusercontent.com/69080709/164514052-4990128c-f1df-4a41-b646-a32ec1322d4d.png"
@@ -149,8 +153,25 @@
 
           btn.appendChild(figure);
           btn.appendChild(label);
-          btn.addEventListener('click', () => loadGame(embedUrl));
-
+          btn.addEventListener('click', () => {
+            if (name === "BlueBubbles") {
+            // Open in a new window
+            const newWindow = window.open(
+              embedUrl,
+              '_blank',
+              'width=1024,height=768,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=yes'
+            );
+            if (newWindow) {
+              newWindow.focus();
+            } else {
+              alert('Popup blocked! Please allow popups for this site.');
+            }
+          } else {
+            // Embed normally
+            loadGame(embedUrl);
+          }
+        });
+          
           col.appendChild(btn);
           list.appendChild(col);
         });
